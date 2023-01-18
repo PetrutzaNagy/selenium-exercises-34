@@ -16,10 +16,15 @@ chrome = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 #maximaze window
 chrome.maximize_window()
 chrome.get("https://www.kfea.ro/cafea/")
-sleep(20)
-chrome.find_element(By.ID, "search").send_keys("jacobs")
+chrome.find_element(By.ID, "search").send_keys("jacobs barista")
 #pentru alte butoane de pe pagina inafara de literea sau cifre si caractere speciale folosim libraria keys
 chrome.find_element(By.ID, "search").send_keys(Keys.ENTER)
-sleep(10)
+#dupa ce dam search apar 25 rezultate - cand avem mai multe rezultate (daca da-mi cu Ctrl+7 si apar mai multe) si vrem sa facem ceva cu toate atunci
+#folosim in loc de find_element find_elements - ne intoarce o lista cu toate elementele
+lista_cautare = chrome.find_elements(By.CLASS_NAME, "snize-title")
+#assert ca am primit 4 de rezultate dupa cautare
+assert len(lista_cautare) == 4
+#assert ca toate rezultatele au in titlu jacobs barista (s-a facut cautarea corecta)
+for web_element in lista_cautare:
+    assert "jacobs barista" in web_element.text.lower()
 chrome.quit()
-
