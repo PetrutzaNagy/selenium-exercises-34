@@ -23,6 +23,8 @@ chrome.find_element(By.ID, "search").send_keys(Keys.ENTER)
 #folosim in loc de find_element find_elements - ne intoarce o lista cu toate elementele
 lista_cautare = chrome.find_elements(By.CLASS_NAME, "snize-title")
 #assert ca am primit 4 de rezultate dupa cautare
+#e adevarat () trebuie sa fie ceva ce e True sau False. ca sa ne treaca testul trebuie sa fie acolo ceva True
+# Daca e Fa   5>6, ==..un text egal cu alt text, lungimea unei liste sau al unui cuvant, sau a unei parole e egala cu un numar, element is displayed
 assert len(lista_cautare) == 4
 #assert ca toate rezultatele au in titlu jacobs barista (s-a facut cautarea corecta)
 for web_element in lista_cautare:
